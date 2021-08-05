@@ -5,7 +5,7 @@ public static class IDiscountExt
 {
     public static decimal Total(this IDiscount discount, IOrderItem orderItem)
     {
-        if (discount.Percent != null)
+        if (discount.Percent is not null)
         {
             return (decimal)discount.Percent.GetValueOrDefault() * orderItem.Total(withDiscount: false);
         }
@@ -15,7 +15,7 @@ public static class IDiscountExt
 
     public static decimal Total(this IDiscount discount, IOrder order)
     {
-        if (discount.Percent != null)
+        if (discount.Percent is not null)
         {
             var total = order.TotalCore();
             return (decimal)discount.Percent.GetValueOrDefault() * total;

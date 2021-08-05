@@ -63,7 +63,7 @@ foreach (var item in order.Items)
 
     foreach (var discount in item.Discounts)
     {
-        Console.WriteLine($"    {discount.Description} {(discount.Percent != null ? (item.VatRate * 100) + "%" : null)} {discount.Total.ToString("c")}");
+        Console.WriteLine($"    {discount.Description} {(discount.Percent is not null ? (item.VatRate * 100) + "%" : null)} {discount.Total.ToString("c")}");
     }
 
     Console.WriteLine();

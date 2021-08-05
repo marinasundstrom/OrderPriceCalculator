@@ -14,7 +14,7 @@ public static class IHasDiscountExt
                 if (!item.Discounts.Any())
                     continue;
 
-                if (discount == null) discount = 0;
+                if (discount is null) discount = 0;
 
                 discount += item.Discount();
             }
@@ -28,7 +28,7 @@ public static class IHasDiscountExt
         {
             if (orderItem.Discounts.Any())
             {
-                if (discount == null) discount = 0;
+                if (discount is null) discount = 0;
 
                 return orderItem.Discounts.Sum(orderItem);
             }
