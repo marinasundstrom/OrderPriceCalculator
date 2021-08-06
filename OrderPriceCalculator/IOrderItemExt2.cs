@@ -4,6 +4,7 @@ public static class IOrderItemExt2
 {
     public static IOrderItem2 Update(this IOrderItem2 orderItem)
     {
+        orderItem.Vat = orderItem.Vat();
         orderItem.Total = orderItem.Total();
 
         if (orderItem is IHasDiscounts oi)

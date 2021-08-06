@@ -6,6 +6,7 @@ public class OrderItem : IOrderItem2
     public decimal Price { get; set; }
     public double VatRate { get; set; }
     public double Quantity { get; set; }
+    public decimal Vat { get; set; }
     public decimal Total { get; set; }
 
     public List<Discount> Discounts { get; set; } = new List<Discount>();
