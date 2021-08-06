@@ -52,9 +52,30 @@ order.Update();
 Console.WriteLine(order.Total);
 
 // Now you can persist the entity in a DB using, for instance, EF Core.
+
+// Dump to console
+order.Dump();
 ```
 
 Note: Swedish General VAT is 25% for most goods and services. 12% for food, drinks, and such.
+
+**Output:**
+
+```
+Shirt 150.00 kr (25%) x 3 pcs = 450.00 kr
+    3 for 2  -150.00 kr
+
+Coffee 24.00 kr (12%) x 1 pcs = 24.00 kr
+
+
+25% 240.00 kr 60.00 kr 300.00 kr
+12% 21.43 kr 2.57 kr 24.00 kr
+
+Discount: -150.00 kr
+Vat: 62.57 kr
+Rounding:  
+Total: 324.00 kr
+```
 
 ## Layers
 

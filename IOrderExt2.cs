@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 public static class IOrderExt2
 {
@@ -22,5 +23,12 @@ public static class IOrderExt2
         order.Total = order.Total();
 
         return order;
+    }
+
+    public static IEnumerable<(double VatRate, decimal SubTotal, decimal Vat, decimal Total)> GetTotals(this IOrder2 order) 
+    {
+        return order.Items
+            .GroupBy(x => x.VatRate, x => x)
+            .Select(x => (VatRate: x.Key, SubTotal: x.Sum(i => i.SubTotal()), Vat: x.Sum(i => i.Vat()), Total: x.Sum(i => i.Total)));
     }
 }
