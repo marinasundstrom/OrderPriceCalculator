@@ -45,19 +45,19 @@ order.Items.Add(new OrderItem()
 //    VatRate = 0.12,
 //    Quantity = 1
 //});
-order.Items.Add(new OrderItem()
-{
-    Description = "Kaffe",
-    Price = 24m,
-    VatRate = 0.12,
-    Quantity = 1
-});
-
-//order.Discounts.Add(new Discount
+//order.Items.Add(new OrderItem()
 //{
-//    Description = "Discount",
-//    Percent = -0.10
+//    Description = "Kaffe",
+//    Price = 24m,
+//    VatRate = 0.12,
+//    Quantity = 1
 //});
+
+order.Discounts.Add(new Discount
+{
+    Description = "Discount",
+    Percent = -0.10
+});
 
 
 order.Update();

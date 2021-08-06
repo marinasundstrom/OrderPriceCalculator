@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 public static class IOrderExt
@@ -39,5 +40,12 @@ public static class IOrderExt
     public static decimal TotalCore(this IOrder order)
     {
         return order.Items.Sum(i => i.Total());
+    }
+
+    public static IEnumerable<(double VatRate, decimal SubTotal, decimal Vat, decimal Total)> Totals(this IOrder order)
+    {
+        return order.Items
+            .GroupBy(x => x.VatRate, x => x)
+            .Select(x => (VatRate: x.Key, SubTotal: x.Sum(i => i.SubTotal()), Vat: x.Sum(i => i.Vat()), Total: x.Sum(i => i.Total())));
     }
 }

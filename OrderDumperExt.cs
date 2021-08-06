@@ -20,7 +20,7 @@ public static class OrderDumperExt
 
         Console.WriteLine();
 
-        var totals = order.GetTotals();
+        var totals = order.Totals();
 
         foreach(var f in totals)
         {
