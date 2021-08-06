@@ -2,18 +2,33 @@
 
 This is an implementation of a re-usable set of operations and calculations on Order-like entities.
 
+## How to use
+
+As long as your entity classes extend the interfaces you should be able to call the operations to calculate values and update the entities.
+
 ## Contents
 
-This project provides interfaces and extension methods that operate on the following artifcats:
+This project provides interfaces and extension methods that operate on a data model consisiting of the following entities:
 
-* Orders
-* Order Items
-* Discounts
+* Order (IOrder)
+* OrderItem (IOrderItem)
+* Discount (IDiscount)
 
-Making it easy to re-use the operations for functionality that deals with invoices.
+Making it easy to re-use the operations, for example, for functionality that deals with invoices. Just implement the interfaces in your own concrete data model to get access to the methods.
+
+Invoking the extension methods defined for the entities will give you the desired result.
+
+### VAT Rates
+
+Items can be of different VAT Rates. Then they will be calculated as separate "OrderTotals". Then they will not be summarized in the Order's SubTotal, Vat, and VatRate.
+
+### Discounts
+
+The model supports two kind of discounts: Discount of items and Discount on Order (equivalent to Sale). They can be either a negative amount or negative percentage of the Total an Order or OrderItem.
+
+Discounts get summarized in the Discount property.
 
 ## Sample
-
 
 ```c#
 using System;
@@ -77,9 +92,9 @@ Rounding:
 Total: 324.00 kr
 ```
 
-## Layers
+## API
 
-The library can be seen as consisting of 2 levels, or layers.
+The API can be seen as consisting of 2 levels, or layers.
 
 ### Layer 1
 
@@ -90,7 +105,3 @@ Adds interfaces with the necessary properties and operations for performing calc
 Extens Layer 1 with interfaces containing properties and methods for persisting the results of the calculations; SubTotal, Total etc.
 
 The ```Update``` methods.
-
-## How to use
-
-As long as your entity classes extend the interfaces you should be able to call the operations to calculate values and update the entities.

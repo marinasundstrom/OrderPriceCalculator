@@ -53,11 +53,11 @@ order.Items.Add(new OrderItem()
 //    Quantity = 1
 //});
 
-order.Discounts.Add(new Discount
-{
-    Description = "Discount",
-    Percent = -0.10
-});
+//order.Discounts.Add(new Discount
+//{
+//    Description = "Discount",
+//    Percent = -0.10
+//});
 
 
 order.Update();
