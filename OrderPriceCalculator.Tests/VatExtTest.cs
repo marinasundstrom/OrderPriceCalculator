@@ -15,7 +15,7 @@ public class VatExtTest
     }
 
     [Fact]
-    public void Add25PercentTo100()
+    public void AddVat25PercentTo100()
     {
         var result = VatExt.AddVat(100m, 0.25);
 
@@ -31,7 +31,7 @@ public class VatExtTest
     }
 
     [Fact]
-    public void Get25VatPercentIncludedIn125()
+    public void GetVat25PercentIncludedIn125()
     {
         var result = VatExt.GetVatIncl(125m, 0.25);
 
