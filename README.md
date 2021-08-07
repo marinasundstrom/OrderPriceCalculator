@@ -2,15 +2,15 @@
 
 This is an implementation of a re-usable set of operations and calculations on Order-like entities.
 
-## The Problem
+## Problem
 
 While handling Orders and Invoices, I found myself having to duplicate the same logic for price calculation across the domains.
 
-## The Solution
+## Solution
 
 A library that provides the operations that are common for entities in all of the above mentioned domains. Implemented as interfaces and extensions methods.
 
-## Contents
+## API
 
 This project provides interfaces and extension methods that operate on a data model consisiting of the following entities:
 
@@ -32,49 +32,15 @@ The model supports two kind of discounts: Discount of items and Discount on Orde
 
 Discounts get summarized in the Discount property.
 
-## How to use in your own project
+### Structure
 
-As long as your entity classes extend the interfaces you should be able to call the operations to calculate values and update the entities.
+The API can be seen as consisting of 2 layers:
 
-```c#
-MyOrder myOrder = new MyOrder();
+**Layer 1** - Adds interfaces with the necessary properties and operations for performing calculations; Price, Quantity etc.
 
-// Lines ommitted
+**Layer 2** - Extends Layer 1 with interfaces containing properties and methods for persisting the results of the calculations; SubTotal, Total etc.
 
-Console.WriteLine(myOrder.Vat());
-Console.WriteLine(myOrder.Total());
-````
-
-The custom implementations in their simplest form:
-
-```c#
-using System.Collections.Generic;
-
-public class MyOrder : IOrder
-{
-    public List<MyOrderItem> Items { get; set; } = new List<MyOrderItem>();
-
-    public List<Discount> Discounts { get; set; } = new List<Discount>();
-    public decimal? Discount { get; set; }
-
-    IEnumerable<IOrderItem> IOrder.Items => Items;
-
-    IEnumerable<IDiscount> IHasDiscounts.Discounts => Discounts;
-}
-
-public class MyOrderItem : IOrderItem
-{
-    public string Description { get; set; } = null!;
-    public decimal Price { get; set; }
-    public double VatRate { get; set; }
-    public double Quantity { get; set; }
-
-    public List<Discount> Discounts { get; set; } = new List<Discount>();
-    public decimal? Discount { get; set; }
-
-    IEnumerable<IDiscount> IHasDiscounts.Discounts => Discounts;
-}
-```
+The ```Update``` methods.
 
 ## Sample
 
@@ -142,16 +108,46 @@ Rounding:
 Total: 324.00 kr
 ```
 
-## API
+## How to use in your own project
 
-The API can be seen as consisting of 2 levels, or layers.
+As long as your entity classes extend the interfaces you should be able to call the operations to calculate values and update the entities.
 
-### Layer 1
+```c#
+MyOrder myOrder = new MyOrder();
 
-Adds interfaces with the necessary properties and operations for performing calculations; Price, Quantity etc.
+// Lines ommitted
 
-### Layer 2
+Console.WriteLine(myOrder.Vat());
+Console.WriteLine(myOrder.Total());
+````
 
-Extens Layer 1 with interfaces containing properties and methods for persisting the results of the calculations; SubTotal, Total etc.
+The custom implementations in their simplest form:
 
-The ```Update``` methods.
+```c#
+using System.Collections.Generic;
+
+public class MyOrder : IOrder
+{
+    public List<MyOrderItem> Items { get; set; } = new List<MyOrderItem>();
+
+    public List<Discount> Discounts { get; set; } = new List<Discount>();
+    public decimal? Discount { get; set; }
+
+    IEnumerable<IOrderItem> IOrder.Items => Items;
+
+    IEnumerable<IDiscount> IHasDiscounts.Discounts => Discounts;
+}
+
+public class MyOrderItem : IOrderItem
+{
+    public string Description { get; set; } = null!;
+    public decimal Price { get; set; }
+    public double VatRate { get; set; }
+    public double Quantity { get; set; }
+
+    public List<Discount> Discounts { get; set; } = new List<Discount>();
+    public decimal? Discount { get; set; }
+
+    IEnumerable<IDiscount> IHasDiscounts.Discounts => Discounts;
+}
+```
