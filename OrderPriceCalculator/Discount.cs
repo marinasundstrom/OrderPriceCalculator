@@ -1,4 +1,6 @@
-﻿public class Discount : IDiscountWithTotal
+﻿namespace OrderPriceCalculator;
+
+public class Discount : IDiscountWithTotal
 {
     public string Description { get; set; } = null!;
     public decimal? Amount { get; set; }

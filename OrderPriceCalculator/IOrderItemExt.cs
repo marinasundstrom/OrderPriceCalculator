@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿namespace OrderPriceCalculator;
+
+using System.Linq;
 
 public static class IOrderItemExt
 {

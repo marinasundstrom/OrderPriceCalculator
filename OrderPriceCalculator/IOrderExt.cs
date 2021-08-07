@@ -1,4 +1,6 @@
-﻿using System;
+﻿namespace OrderPriceCalculator;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 

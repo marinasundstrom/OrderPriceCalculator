@@ -1,4 +1,6 @@
-﻿public class OrderTotals : IOrderTotals
+﻿namespace OrderPriceCalculator;
+
+public class OrderTotals : IOrderTotals
 {
     public int Id { get; set; }
     public double VatRate { get; set; }

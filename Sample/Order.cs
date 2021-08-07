@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿namespace OrderPriceCalculator.Sample;
+
+using System.Collections.Generic;
 
 public class Order : IOrder2WithTotals
 {

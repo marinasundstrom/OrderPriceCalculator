@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿namespace OrderPriceCalculator.Tests;
+
+using System.Collections.Generic;
 
 public class OrderItem : IOrderItem2
 {

@@ -1,4 +1,6 @@
-﻿public static class VatExt
+﻿namespace OrderPriceCalculator;
+
+public static class VatExt
 {
     /// <summary>
     /// Add VAT.

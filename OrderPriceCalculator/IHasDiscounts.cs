@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿namespace OrderPriceCalculator;
+
+using System.Collections.Generic;
 
 public interface IHasDiscounts
 {

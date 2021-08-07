@@ -1,4 +1,6 @@
-﻿public interface IOrderTotals
+﻿namespace OrderPriceCalculator;
+
+public interface IOrderTotals
 {
     double VatRate { get; set; }
     decimal SubTotal { get; set; }
