@@ -2,6 +2,14 @@
 
 This is an implementation of a re-usable set of operations and calculations on Order-like entities.
 
+## The Problem
+
+While handling Orders and Invoices, I found myself having to duplicate the same logic for price calculation across the domains.
+
+## The Solution
+
+A library that provides the operations that are common for entities in all of the above mentioned domains. Implemented as interfaces and extensions methods.
+
 ## Contents
 
 This project provides interfaces and extension methods that operate on a data model consisiting of the following entities:
@@ -24,7 +32,7 @@ The model supports two kind of discounts: Discount of items and Discount on Orde
 
 Discounts get summarized in the Discount property.
 
-## How to use
+## How to use in your own project
 
 As long as your entity classes extend the interfaces you should be able to call the operations to calculate values and update the entities.
 
@@ -33,6 +41,7 @@ MyOrder myOrder = new MyOrder();
 
 // Lines ommitted
 
+Console.WriteLine(myOrder.Vat());
 Console.WriteLine(myOrder.Total());
 ````
 
