@@ -2,10 +2,6 @@
 
 This is an implementation of a re-usable set of operations and calculations on Order-like entities.
 
-## How to use
-
-As long as your entity classes extend the interfaces you should be able to call the operations to calculate values and update the entities.
-
 ## Contents
 
 This project provides interfaces and extension methods that operate on a data model consisiting of the following entities:
@@ -28,7 +24,52 @@ The model supports two kind of discounts: Discount of items and Discount on Orde
 
 Discounts get summarized in the Discount property.
 
+## How to use
+
+As long as your entity classes extend the interfaces you should be able to call the operations to calculate values and update the entities.
+
+```c#
+MyOrder myOrder = new MyOrder();
+
+// Lines ommitted
+
+Console.WriteLine(myOrder.Total());
+````
+
+The custom implementations in their simplest form:
+
+```c#
+using System.Collections.Generic;
+
+public class MyOrder : IOrder
+{
+    public List<MyOrderItem> Items { get; set; } = new List<MyOrderItem>();
+
+    public List<Discount> Discounts { get; set; } = new List<Discount>();
+    public decimal? Discount { get; set; }
+
+    IEnumerable<IOrderItem> IOrder.Items => Items;
+
+    IEnumerable<IDiscount> IHasDiscounts.Discounts => Discounts;
+}
+
+public class MyOrderItem : IOrderItem
+{
+    public string Description { get; set; } = null!;
+    public decimal Price { get; set; }
+    public double VatRate { get; set; }
+    public double Quantity { get; set; }
+
+    public List<Discount> Discounts { get; set; } = new List<Discount>();
+    public decimal? Discount { get; set; }
+
+    IEnumerable<IDiscount> IHasDiscounts.Discounts => Discounts;
+}
+```
+
 ## Sample
+
+This is a more elaborate sample:
 
 ```c#
 using System;
