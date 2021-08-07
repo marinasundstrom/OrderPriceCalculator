@@ -36,9 +36,9 @@ Discounts get summarized in the Discount property.
 
 The API can be seen as consisting of 2 layers:
 
-**Layer 1** - Adds interfaces with the necessary properties and operations for performing calculations; Price, Quantity etc.
+**Layer 1** - Provides interfaces`(```IOrder```, ```IOrderItem```) with the necessary properties and operations for performing calculations; Price, Quantity etc.
 
-**Layer 2** - Extends Layer 1 with interfaces containing properties and methods for persisting the results of the calculations; SubTotal, Total etc.
+**Layer 2** - Extends Layer 1 with interfaces (```IOrder2```, ```IOrderItem2```) containing properties and methods for persisting the results of the calculations; SubTotal, Total etc.
 
 The ```Update``` methods.
 
