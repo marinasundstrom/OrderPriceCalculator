@@ -2,7 +2,7 @@
 
 using System.Collections.Generic;
 
-public class Order : IOrder2WithTotals
+public class Order : IOrder2WithTotals, IOrder2WithTotalsInternals
 {
     public int Id { get; set; }
     public List<OrderItem> Items { get; set; } = new List<OrderItem>();
@@ -26,4 +26,30 @@ public class Order : IOrder2WithTotals
 
     IEnumerable<IDiscount> IHasDiscounts.Discounts => Discounts;
     IEnumerable<IDiscountWithTotal> IHasDiscountsWithTotal.Discounts => Discounts;
+
+    void IOrder2WithTotalsInternals.AddTotals(IOrderTotals orderTotals)
+    {
+        Totals.Add((OrderTotals)orderTotals);
+    }
+
+    void IOrder2WithTotalsInternals.RemoveTotals(IOrderTotals orderTotals)
+    {
+        Totals.Remove((OrderTotals)orderTotals);
+    }
+
+    void IOrder2WithTotalsInternals.ClearTotals()
+    {
+        Totals.Clear();
+    }
+
+    IOrderTotals IOrder2WithTotalsInternals.CreateTotals(double vatRate, decimal subTotal, decimal vat, decimal total)
+    {
+        return new OrderTotals()
+        {
+            VatRate = vatRate,
+            SubTotal = subTotal,
+            Vat = vat,
+            Total = total
+        };
+    }
 }

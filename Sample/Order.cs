@@ -29,17 +29,17 @@ public class Order : IOrder2WithTotals, IOrder2WithTotalsInternals
 
     void IOrder2WithTotalsInternals.AddTotals(IOrderTotals orderTotals)
     {
-        Discounts.Add((OrderDiscount)orderTotals);
+        Totals.Add((OrderTotals)orderTotals);
     }
 
     void IOrder2WithTotalsInternals.RemoveTotals(IOrderTotals orderTotals)
     {
-        Discounts.Remove((OrderDiscount)orderTotals);
+        Totals.Remove((OrderTotals)orderTotals);
     }
 
     void IOrder2WithTotalsInternals.ClearTotals()
     {
-        Discounts.Clear();
+        Totals.Clear();
     }
 
     IOrderTotals IOrder2WithTotalsInternals.CreateTotals(double vatRate, decimal subTotal, decimal vat, decimal total)
