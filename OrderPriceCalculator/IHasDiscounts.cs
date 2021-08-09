@@ -8,8 +8,3 @@ public interface IHasDiscounts
 
     decimal? Discount { get; set; }
 }
-
-public interface IHasDiscountsWithTotal : IHasDiscounts
-{
-    new IEnumerable<IDiscountWithTotal> Discounts { get; }
-}

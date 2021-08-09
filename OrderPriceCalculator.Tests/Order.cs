@@ -16,7 +16,7 @@ public class Order : IOrder2WithTotals
 
     public List<OrderTotals> Totals { get; set; } = new List<OrderTotals>();
 
-    public List<Discount> Discounts { get; set; } = new List<Discount>();
+    public List<OrderDiscount> Discounts { get; set; } = new List<OrderDiscount>();
     public decimal? Discount { get; set; }
 
     IEnumerable<IOrderItem> IOrder.Items => Items;

@@ -34,11 +34,14 @@ public static class IOrderExt2
 
     public static IOrder2 UpdateTotals(this IOrder2WithTotals order)
     {
+        if(order is not IOrder2WithTotalsInternals orderWithTotals)
+            throw new InvalidOperationException("Order must implement IOrder2WithTotalsInternals");
+
         var totals = order.Totals();
 
         if (totals.Count() == 1)
         {
-            (order.Totals as List<OrderTotals>)!.Clear();
+            orderWithTotals.ClearTotals();
 
             var total = totals.First();
 
@@ -55,15 +58,14 @@ public static class IOrderExt2
 
             if (t == null)
             {
-                t = new OrderTotals()
-                {
-                    VatRate = total.VatRate,
-                    SubTotal = total.SubTotal,
-                    Vat = total.Vat,
-                    Total = total.Total
-                };
+                t = orderWithTotals.CreateTotals(
+                    total.VatRate,
+                    total.SubTotal,
+                    total.Vat,
+                    total.Total
+                );
 
-                (order.Totals as List<OrderTotals>)!.Add((OrderTotals)t);
+                orderWithTotals.AddTotals(t);
             }
             else
             {
@@ -80,7 +82,7 @@ public static class IOrderExt2
 
             if (total == default)
             {
-                (order.Totals as List<OrderTotals>)!.Remove((OrderTotals)t);
+                orderWithTotals.RemoveTotals(t);
             }
         }
 

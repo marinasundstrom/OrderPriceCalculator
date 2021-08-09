@@ -21,8 +21,8 @@ order.Items.Add(new OrderItem()
     Price = 150m,
     VatRate = 0.25,
     Quantity = 3,
-    Discounts = new List<Discount>() {
-        new Discount {
+    Discounts = new List<OrderDiscount>() {
+        new OrderDiscount {
             Description = "3 for 2",
             Amount = -150
         }
