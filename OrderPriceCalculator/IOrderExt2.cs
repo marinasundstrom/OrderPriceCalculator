@@ -12,7 +12,7 @@ public static class IOrderExt2
             item.Update();
         }
 
-        if(order is IOrder2WithTotals owt)
+        if (order is IOrder2WithTotals owt)
         {
             owt.UpdateTotals();
         }
@@ -34,7 +34,7 @@ public static class IOrderExt2
 
     public static IOrder2 UpdateTotals(this IOrder2WithTotals order)
     {
-        if(order is not IOrder2WithTotalsInternals orderWithTotals)
+        if (order is not IOrder2WithTotalsInternals orderWithTotals)
             throw new InvalidOperationException("Order must implement IOrder2WithTotalsInternals");
 
         var totals = order.Totals();

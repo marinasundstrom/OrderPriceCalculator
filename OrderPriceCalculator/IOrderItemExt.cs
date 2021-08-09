@@ -31,7 +31,7 @@ public static class IOrderItemExt
 
         if (withDiscount)
         {
-            if(orderItem is IHasDiscounts oi && withDiscount)
+            if (orderItem is IHasDiscounts oi && withDiscount)
             {
                 sum += oi.Discounts.Sum(orderItem);
             }
@@ -40,4 +40,3 @@ public static class IOrderItemExt
         return sum;
     }
 }
-

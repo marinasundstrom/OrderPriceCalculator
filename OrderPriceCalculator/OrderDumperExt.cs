@@ -24,7 +24,7 @@ public static class OrderDumperExt
 
         var totals = order.Totals();
 
-        foreach(var f in totals)
+        foreach (var f in totals)
         {
             Console.WriteLine($"{f.VatRate * 100}% {f.SubTotal.ToString("c")} {f.Vat.ToString("c")} {f.Total.ToString("c")}");
         }
@@ -34,6 +34,6 @@ public static class OrderDumperExt
         Console.WriteLine($"Discount: {order.Discount?.ToString("c")}");
         Console.WriteLine($"Vat: {order.Vat().ToString("c")}");
         Console.WriteLine($"Rounding: {order.Rounding?.ToString("c")} ");
-        Console.WriteLine($"Total: {order.Total().ToString("c")}");    
+        Console.WriteLine($"Total: {order.Total().ToString("c")}");
     }
 }
