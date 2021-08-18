@@ -1,35 +1,41 @@
 ﻿namespace OrderPriceCalculator;
 
+using static Console;
+
 public static class OrderDumperExt
 {
     public static void Dump(this IOrder2 order)
     {
+        WriteLine($"{"Item",-20} {"Price",-20} {"Quantity",-12} {"Total",-12}");
+
         foreach (var item in order.Items)
         {
-            Console.WriteLine($"{item.Description} {item.Price.ToString("c")} ({item.VatRate * 100}%) x {item.Quantity} pcs = {(item.Total - item.Discount.GetValueOrDefault()).ToString("c")}");
+            WriteLine($"{item.Description,-20} {item.Price.ToString("c") + " (" + item.VatRate * 100 + "%)",-20} {item.Quantity + " pcs",-12} {(item.Total - item.Discount.GetValueOrDefault()).ToString("c"),-12}");
 
             foreach (var discount in item.Discounts)
             {
-                Console.WriteLine($"    {discount.Description} {(discount.Percent is not null ? (item.VatRate * 100) + "%" : null)} {discount.Total.ToString("c")}");
+                WriteLine($"    {discount.Description,-15} {(discount.Percent is not null ? (item.VatRate * 100) + "%" : null),-12} {discount.Total.ToString("c"),33}");
             }
 
-            Console.WriteLine();
+            WriteLine();
         }
 
-        Console.WriteLine();
+        WriteLine();
 
         var totals = order.Totals();
 
+        WriteLine($"{"VAT%",-5} {"Sub Total",-12} {"VAT",-12} {"Total",-12}");
+
         foreach (var f in totals)
         {
-            Console.WriteLine($"{f.VatRate * 100}% {f.SubTotal.ToString("c")} {f.Vat.ToString("c")} {f.Total.ToString("c")}");
+            WriteLine($"{f.VatRate * 100 + "%",-5} {f.SubTotal.ToString("c"),-12} {f.Vat.ToString("c"),-12} {f.Total.ToString("c"),-12}");
         }
 
-        Console.WriteLine();
+        WriteLine();
 
-        Console.WriteLine($"Discount: {order.Discount?.ToString("c")}");
-        Console.WriteLine($"Vat: {order.Vat().ToString("c")}");
-        Console.WriteLine($"Rounding: {order.Rounding?.ToString("c")} ");
-        Console.WriteLine($"Total: {order.Total().ToString("c")}");
+        WriteLine($"Discount: {order.Discount?.ToString("c")}");
+        WriteLine($"Vat: {order.Vat().ToString("c")}");
+        WriteLine($"Rounding: {order.Rounding?.ToString("c")} ");
+        WriteLine($"Total: {order.Total().ToString("c")}");
     }
 }
