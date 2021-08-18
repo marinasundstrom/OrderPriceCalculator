@@ -56,7 +56,7 @@ public static class IOrderExt2
         {
             var t = order.Totals.FirstOrDefault(x => x.VatRate == total.VatRate);
 
-            if (t == null)
+            if (t is null)
             {
                 t = orderWithTotals.CreateTotals(
                     total.VatRate,
@@ -85,6 +85,10 @@ public static class IOrderExt2
                 orderWithTotals.RemoveTotals(t);
             }
         }
+
+        order.SubTotal = order.Totals.Sum(i => i.SubTotal);
+        order.Vat = order.Totals.Sum(i => i.Vat);
+        order.VatRate = null;
 
         return order;
 
