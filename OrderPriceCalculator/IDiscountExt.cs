@@ -1,8 +1,5 @@
 ﻿namespace OrderPriceCalculator;
 
-using System.Collections.Generic;
-using System.Linq;
-
 public static class IDiscountExt
 {
     public static decimal Total(this IDiscount discount, IOrderItem orderItem)

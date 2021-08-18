@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-
-using OrderPriceCalculator;
-using OrderPriceCalculator.Sample;
+﻿using OrderPriceCalculator.Sample;
 
 //var price = 100m.AddVat(0.25);
 //var vat = price.GetVatIncl(0.25);

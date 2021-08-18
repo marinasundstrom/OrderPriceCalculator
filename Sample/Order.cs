@@ -1,7 +1,5 @@
 ﻿namespace OrderPriceCalculator.Sample;
 
-using System.Collections.Generic;
-
 public class Order : IOrder2WithTotals, IOrder2WithTotalsInternals
 {
     public int Id { get; set; }

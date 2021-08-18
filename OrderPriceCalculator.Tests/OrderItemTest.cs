@@ -1,8 +1,5 @@
 ﻿namespace OrderPriceCalculator.Tests;
 
-using System;
-using System.Collections.Generic;
-
 using Xunit;
 
 public class OrderItemTest

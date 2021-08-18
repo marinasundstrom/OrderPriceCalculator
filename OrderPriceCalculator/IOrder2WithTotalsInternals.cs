@@ -1,7 +1,5 @@
 namespace OrderPriceCalculator;
 
-using System.Collections.Generic;
-
 public interface IOrder2WithTotalsInternals : IOrder2WithTotals
 {
     void AddTotals(IOrderTotals orderTotals);

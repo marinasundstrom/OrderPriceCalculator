@@ -1,9 +1,5 @@
 ﻿namespace OrderPriceCalculator;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
 public static class OrderDumperExt
 {
     public static void Dump(this IOrder2 order)

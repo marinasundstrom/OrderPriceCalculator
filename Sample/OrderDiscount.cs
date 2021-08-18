@@ -1,7 +1,5 @@
 namespace OrderPriceCalculator.Sample;
 
-using System.Collections.Generic;
-
 public class OrderDiscount : IDiscountWithTotal
 {
     public string Description { get; set; } = null!;

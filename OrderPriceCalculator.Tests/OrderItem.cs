@@ -1,7 +1,5 @@
 ﻿namespace OrderPriceCalculator.Tests;
 
-using System.Collections.Generic;
-
 public class OrderItem : IOrderItem2
 {
     public string Description { get; set; } = null!;

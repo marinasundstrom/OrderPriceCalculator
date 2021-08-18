@@ -1,8 +1,5 @@
 ﻿namespace OrderPriceCalculator;
 
-using System;
-using System.Linq;
-
 public static class IHasDiscountExt
 {
     public static decimal? Discount(this IHasDiscounts hasDiscounts)

@@ -1,7 +1,5 @@
 ﻿namespace OrderPriceCalculator;
 
-using System.Linq;
-
 public static class IOrderItemExt
 {
     public static decimal SubTotal(this IOrderItem orderItem)

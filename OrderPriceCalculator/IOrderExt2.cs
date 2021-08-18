@@ -1,8 +1,5 @@
 ﻿namespace OrderPriceCalculator;
 
-using System.Collections.Generic;
-using System.Linq;
-
 public static class IOrderExt2
 {
     public static IOrder2 Update(this IOrder2 order)

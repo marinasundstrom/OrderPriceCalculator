@@ -1,7 +1,5 @@
 ﻿namespace OrderPriceCalculator;
 
-using System.Collections.Generic;
-
 public interface IOrder2 : IOrder, IHasDiscountsWithTotal
 {
     decimal? SubTotal { get; set; }
