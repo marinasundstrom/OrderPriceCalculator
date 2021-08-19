@@ -12,19 +12,24 @@ public static class IChargeExt
         {
             throw new InvalidOperationException("Quantity must be specified when Limit is set.");
         }
+        
+        var orderItemQuantity = orderItem.Quantity;
 
         if (charge.Quantity != null)
         {
             // Apply Charge to a certain Quantity. Respecting the Limit telling how many times.
 
-            var orderItemQuantity = orderItem.Quantity;
 
             if (orderItem.Quantity > (charge.Limit * charge.Quantity))
             {
-                orderItemQuantity = charge.Quantity.GetValueOrDefault();
+                orderItemQuantity = charge.Limit.GetValueOrDefault() * charge.Quantity.GetValueOrDefault();
             }
 
             chargeQuantity = (int)Math.Floor(orderItemQuantity / (double)charge.Quantity);
+        }
+        else 
+        {
+            chargeQuantity = (int)orderItemQuantity;
         }
 
         if (charge.Percent is not null)

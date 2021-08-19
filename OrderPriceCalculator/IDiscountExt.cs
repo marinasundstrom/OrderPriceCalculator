@@ -13,18 +13,22 @@ public static class IDiscountExt
             throw new InvalidOperationException("Quantity must be specified when Limit is set.");
         }
 
+        var orderItemQuantity = orderItem.Quantity;
+
         if (discount.Quantity != null)
         {
             // Apply Discount to a certain Quantity. Respecting the Limit telling how many times.
 
-            var orderItemQuantity = orderItem.Quantity;
-
             if (orderItem.Quantity > (discount.Limit * discount.Quantity))
             {
-                orderItemQuantity = discount.Quantity.GetValueOrDefault();
+                orderItemQuantity = discount.Limit.GetValueOrDefault() * discount.Quantity.GetValueOrDefault();
             }
 
             discountQuantity = (int)Math.Floor(orderItemQuantity / (double)discount.Quantity);
+        }
+        else 
+        {
+            discountQuantity = (int)orderItemQuantity;
         }
 
         if (discount.Percent is not null)
