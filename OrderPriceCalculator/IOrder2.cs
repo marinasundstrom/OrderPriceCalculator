@@ -1,6 +1,6 @@
 ﻿namespace OrderPriceCalculator;
 
-public interface IOrder2 : IOrder, IHasDiscountsWithTotal
+public interface IOrder2 : IOrder, IHasChargesWithTotal, IHasDiscountsWithTotal
 {
     decimal? SubTotal { get; set; }
     double? VatRate { get; set; }

@@ -16,4 +16,10 @@ public class OrderItem : IOrderItem2
 
     IEnumerable<IDiscount> IHasDiscounts.Discounts => Discounts;
     IEnumerable<IDiscountWithTotal> IHasDiscountsWithTotal.Discounts => Discounts;
+
+    public List<OrderCharge> Charges { get; set; } = new List<OrderCharge>();
+    public decimal? Charge { get; set; }
+
+    IEnumerable<ICharge> IHasCharges.Charges => Charges;
+    IEnumerable<IChargeWithTotal> IHasChargesWithTotal.Charges => Charges;
 }

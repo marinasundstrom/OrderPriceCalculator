@@ -1,6 +1,6 @@
 ﻿namespace OrderPriceCalculator;
 
-public static class IHasDiscountExt
+public static class IHasDiscountsExt
 {
     public static decimal? Discount(this IHasDiscounts hasDiscounts)
     {

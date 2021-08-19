@@ -18,13 +18,18 @@ public static class IOrderExt
         return Math.Round(totalBeforeRounding) - totalBeforeRounding;
     }
 
-    public static decimal Total(this IOrder order, bool withRounding = true, bool withDiscount = true)
+    public static decimal Total(this IOrder order, bool withRounding = true, bool withCharges = true, bool withDiscount = true)
     {
         decimal total = order.TotalCore();
 
-        if (order is IHasDiscounts o && withDiscount)
+        if (order is IHasCharges o && withCharges)
         {
-            total += o.Discounts.Sum(order);
+            total += o.Charges.Sum(order);
+        }
+
+        if (order is IHasDiscounts o2 && withDiscount)
+        {
+            total += o2.Discounts.Sum(order);
         }
 
         if (withRounding)

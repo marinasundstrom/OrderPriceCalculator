@@ -25,6 +25,12 @@ public class Order : IOrder2WithTotals, IOrder2WithTotalsInternals
     IEnumerable<IDiscount> IHasDiscounts.Discounts => Discounts;
     IEnumerable<IDiscountWithTotal> IHasDiscountsWithTotal.Discounts => Discounts;
 
+    public List<OrderCharge> Charges { get; set; } = new List<OrderCharge>();
+    public decimal? Charge { get; set; }
+
+    IEnumerable<ICharge> IHasCharges.Charges => Charges;
+    IEnumerable<IChargeWithTotal> IHasChargesWithTotal.Charges => Charges;
+
     void IOrder2WithTotalsInternals.AddTotals(IOrderTotals orderTotals)
     {
         Totals.Add((OrderTotals)orderTotals);

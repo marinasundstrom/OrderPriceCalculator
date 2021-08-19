@@ -14,7 +14,17 @@ public static class IOrderExt2
             owt.UpdateTotals();
         }
 
-        if (order is IHasDiscounts o)
+        if (order is IHasCharges o)
+        {
+            if (order is IHasChargesWithTotal o2)
+            {
+                o2.Charges.Update(order);
+            }
+
+            order.Charge = order.Charge();
+        }
+
+        if (order is IHasDiscounts o3)
         {
             if (order is IHasDiscountsWithTotal o2)
             {

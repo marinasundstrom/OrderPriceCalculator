@@ -1,6 +1,6 @@
 ﻿namespace OrderPriceCalculator;
 
-public interface IOrderItem : IHasDiscounts
+public interface IOrderItem : IHasCharges, IHasDiscounts
 {
     string Description { get; set; }
     decimal Price { get; set; }
