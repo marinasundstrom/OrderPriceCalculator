@@ -34,6 +34,7 @@ public static class IOrderExt2
             order.Discount = order.Discount();
         }
 
+        order.Rounding = order.Rounding();
         order.Total = order.Total();
 
         return order;
