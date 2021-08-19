@@ -8,14 +8,14 @@ public static class IChargeExt
 
         int chargeQuantity = 1;
 
-        if (charge.Quantity == null && charge.Limit != null)
+        if (charge.Quantity is null && charge.Limit is not null)
         {
             throw new InvalidOperationException("Quantity must be specified when Limit is set.");
         }
         
         var orderItemQuantity = orderItem.Quantity;
 
-        if (charge.Quantity != null)
+        if (charge.Quantity is not null)
         {
             // Apply Charge to a certain Quantity. Respecting the Limit telling how many times.
 
@@ -42,7 +42,7 @@ public static class IChargeExt
 
     public static decimal Total(this ICharge charge, IOrder order)
     {
-        if (charge.Quantity != null)
+        if (charge.Quantity is not null)
         {
             throw new NotSupportedException();
         }

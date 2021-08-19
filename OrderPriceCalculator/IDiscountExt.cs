@@ -8,14 +8,14 @@ public static class IDiscountExt
 
         int discountQuantity = 1;
 
-        if (discount.Quantity == null && discount.Limit != null)
+        if (discount.Quantity is null && discount.Limit is not null)
         {
             throw new InvalidOperationException("Quantity must be specified when Limit is set.");
         }
 
         var orderItemQuantity = orderItem.Quantity;
 
-        if (discount.Quantity != null)
+        if (discount.Quantity is not null)
         {
             // Apply Discount to a certain Quantity. Respecting the Limit telling how many times.
 
@@ -41,7 +41,7 @@ public static class IDiscountExt
 
     public static decimal Total(this IDiscount discount, IOrder order)
     {
-        if (discount.Quantity != null)
+        if (discount.Quantity is not null)
         {
             throw new NotSupportedException();
         }

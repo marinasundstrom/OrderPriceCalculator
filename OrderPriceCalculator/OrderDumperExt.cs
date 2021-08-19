@@ -14,7 +14,7 @@ public static class OrderDumperExt
 
             foreach (var charge in item.Charges)
             {
-                WriteLine($"    {charge.Description,-15}{(charge.Percent != null ? $" {charge.Percent * 100 + "%"}" : null),-12} {charge.Total.ToString("c"),33}");
+                WriteLine($"    {charge.Description,-15}{(charge.Percent is not null ? $" {charge.Percent * 100 + "%"}" : null),-12} {charge.Total.ToString("c"),33}");
             }
 
             foreach (var discount in item.Discounts)
@@ -44,7 +44,7 @@ public static class OrderDumperExt
 
             foreach (var charge in order.Charges)
             {
-                WriteLine($"{charge.Description,-15}{(charge.Percent != null ? $" {charge.Percent * 100 + "%"}" : null),-12} {charge.Total.ToString("c"),33}");
+                WriteLine($"{charge.Description,-15}{(charge.Percent is not null ? $" {charge.Percent * 100 + "%"}" : null),-12} {charge.Total.ToString("c"),33}");
             }
 
             WriteLine();
