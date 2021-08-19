@@ -2,6 +2,9 @@ namespace OrderPriceCalculator;
 
 public static class IHasChargesExt
 {
+    /// <summary>
+    /// Gets the total amount of Charges.
+    /// </summary>
     public static decimal? Charge(this IHasCharges hasCharges)
     {
         decimal? charge = null;

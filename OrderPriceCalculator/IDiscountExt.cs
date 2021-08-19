@@ -2,6 +2,9 @@
 
 public static class IDiscountExt
 {
+    /// <summary>
+    /// Get the total amount of this Discount as applied on the specified OrderItem.
+    /// </summary>
     public static decimal Total(this IDiscount discount, IOrderItem orderItem)
     {
         // Standard is to apply the Discount once for every Order Item.
@@ -39,6 +42,9 @@ public static class IDiscountExt
         return discount.Amount.GetValueOrDefault() * (decimal)discountQuantity;
     }
 
+    /// <summary>
+    /// Get the total amount of this Discount as applied on the specified Order.
+    /// </summary>
     public static decimal Total(this IDiscount discount, IOrder order)
     {
         if (discount.Quantity is not null)
@@ -55,11 +61,17 @@ public static class IDiscountExt
         return discount.Amount.GetValueOrDefault();
     }
 
+    /// <summary>
+    /// Get the sum of these Discounts as applied on the specified OrderItem.
+    /// </summary>
     public static decimal Sum(this IEnumerable<IDiscount> discounts, IOrderItem orderItem)
     {
         return orderItem.Discounts.Sum(d => d.Total(orderItem));
     }
 
+    /// <summary>   
+    /// Get the sum of these Discounts as applied on the specified Order.
+    /// </summary>
     public static decimal Sum(this IEnumerable<IDiscount> discounts, IOrder order)
     {
         return order.Discounts.Sum(d => d.Total(order));

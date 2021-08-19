@@ -2,6 +2,9 @@ namespace OrderPriceCalculator;
 
 public static class IChargeExt
 {
+    /// <summary>
+    /// Get the total amount of this Charge as applied on the specified OrderItem.
+    /// </summary>
     public static decimal Total(this ICharge charge, IOrderItem orderItem)
     {
         // Standard is to apply the Charge once for every Order Item.
@@ -40,6 +43,9 @@ public static class IChargeExt
         return charge.Amount.GetValueOrDefault() * (decimal)chargeQuantity;
     }
 
+    /// <summary>
+    /// Get the total amount of this Charge as applied on the specified Order.
+    /// </summary>
     public static decimal Total(this ICharge charge, IOrder order)
     {
         if (charge.Quantity is not null)
@@ -56,11 +62,17 @@ public static class IChargeExt
         return charge.Amount.GetValueOrDefault();
     }
 
+    /// <summary>
+    /// Get the sum of these Charges as applied on the specified OrderItem.
+    /// </summary>
     public static decimal Sum(this IEnumerable<ICharge> charges, IOrderItem orderItem)
     {
         return orderItem.Charges.Sum(d => d.Total(orderItem));
     }
 
+    /// <summary>   
+    /// Get the sum of these Charges as applied on the specified Order.
+    /// </summary>
     public static decimal Sum(this IEnumerable<ICharge> charges, IOrder order)
     {
         return order.Charges.Sum(d => d.Total(order));
