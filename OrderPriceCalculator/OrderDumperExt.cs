@@ -6,11 +6,11 @@ public static class OrderDumperExt
 {
     public static void Dump(this IOrder2 order)
     {
-        WriteLine($"{"Item",-20} {"Price",-20} {"Quantity",-12} {"Total",-12}");
+        WriteLine($"{"Item",-30} {"Price",-20} {"Quantity",-12} {"Total",-12}");
 
         foreach (var item in order.Items)
         {
-            WriteLine($"{item.Description,-20} {item.Price.ToString("c") + " (" + item.VatRate * 100 + "%)",-20} {item.Quantity + " pcs",-12} {(item.Total(withCharge: false, withDiscount: false)).ToString("c"),-12}");
+            WriteLine($"{item.Description,-30} {item.Price.ToString("c") + " (" + item.VatRate * 100 + "%)",-20} {item.Quantity + " pcs",-12} {(item.Total(withCharge: false, withDiscount: false)).ToString("c"),-12}");
 
             foreach (var charge in item.Charges)
             {
