@@ -10,7 +10,7 @@ public static class OrderDumperExt
 
         foreach (var item in order.Items)
         {
-            WriteLine($"{item.Description,-20} {item.Price.ToString("c") + " (" + item.VatRate * 100 + "%)",-20} {item.Quantity + " pcs",-12} {(item.Total - item.Discount.GetValueOrDefault()).ToString("c"),-12}");
+            WriteLine($"{item.Description,-20} {item.Price.ToString("c") + " (" + item.VatRate * 100 + "%)",-20} {item.Quantity + " pcs",-12} {(item.Total(false)).ToString("c"),-12}");
 
             foreach (var discount in item.Discounts)
             {

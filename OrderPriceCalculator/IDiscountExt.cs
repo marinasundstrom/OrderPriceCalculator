@@ -4,16 +4,44 @@ public static class IDiscountExt
 {
     public static decimal Total(this IDiscount discount, IOrderItem orderItem)
     {
-        if (discount.Percent is not null)
+        // Standard is to apply the Discount once for every Order Item.
+
+        int discountQuantity = 1;
+
+        if (discount.Quantity == null && discount.Limit != null)
         {
-            return (decimal)discount.Percent.GetValueOrDefault() * orderItem.Total(withDiscount: false);
+            throw new InvalidOperationException("Quantity must be specified when Limit is set.");
         }
 
-        return discount.Amount.GetValueOrDefault();
+        if (discount.Quantity != null)
+        {
+            // Apply Discount to a certain Quantity. Respecting the Limit telling how many times.
+
+            var orderItemQuantity = orderItem.Quantity;
+
+            if (orderItem.Quantity > (discount.Limit * discount.Quantity))
+            {
+                orderItemQuantity = discount.Quantity.GetValueOrDefault();
+            }
+
+            discountQuantity = (int)Math.Floor(orderItemQuantity / (double)discount.Quantity);
+        }
+
+        if (discount.Percent is not null)
+        {
+            return (decimal)discount.Percent.GetValueOrDefault() * orderItem.Total(withDiscount: false) * (decimal)discountQuantity;
+        }
+
+        return discount.Amount.GetValueOrDefault() * (decimal)discountQuantity;
     }
 
     public static decimal Total(this IDiscount discount, IOrder order)
     {
+        if (discount.Quantity != null)
+        {
+            throw new NotSupportedException();
+        }
+
         if (discount.Percent is not null)
         {
             var total = order.TotalCore();

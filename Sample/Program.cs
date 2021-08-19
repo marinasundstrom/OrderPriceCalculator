@@ -14,10 +14,12 @@ order.Items.Add(new OrderItem()
     Description = "Skjorta",
     Price = 150m,
     VatRate = 0.25,
-    Quantity = 3,
+    Quantity = 7,
     Discounts = new List<OrderDiscount>() {
         new OrderDiscount {
             Description = "3 for 2",
+            Quantity = 3,
+            //Limit = 1,
             Amount = -150
         }
     }

@@ -6,6 +6,10 @@ public class OrderDiscount : IDiscountWithTotal
 
     public Guid? DiscountId { get; set; }
 
+    public int? Quantity { get; set; }
+
+    public int? Limit { get; set; }
+
     public decimal? Amount { get; set; }
 
     public double? Percent { get; set; }
