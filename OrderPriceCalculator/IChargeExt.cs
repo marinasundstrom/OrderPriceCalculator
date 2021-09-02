@@ -15,7 +15,7 @@ public static class IChargeExt
         {
             throw new InvalidOperationException("Quantity must be specified when Limit is set.");
         }
-        
+
         var orderItemQuantity = orderItem.Quantity;
 
         if (charge.Quantity is not null)
@@ -30,7 +30,7 @@ public static class IChargeExt
 
             chargeQuantity = (int)Math.Floor(orderItemQuantity / (double)charge.Quantity);
         }
-        else 
+        else
         {
             chargeQuantity = (int)orderItemQuantity;
         }

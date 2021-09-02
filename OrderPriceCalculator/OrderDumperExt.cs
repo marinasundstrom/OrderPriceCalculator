@@ -38,7 +38,7 @@ public static class OrderDumperExt
 
         WriteLine();
 
-        if(order.Charges.Any()) 
+        if (order.Charges.Any())
         {
             WriteLine("Charges:");
 
@@ -50,7 +50,7 @@ public static class OrderDumperExt
             WriteLine();
         }
 
-        if(order.Discounts.Any()) 
+        if (order.Discounts.Any())
         {
             WriteLine("Discounts:");
 

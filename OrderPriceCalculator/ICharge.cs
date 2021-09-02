@@ -17,12 +17,12 @@ public interface ICharge
     /// </summary>
     int? Limit { get; set; }
 
-     /// <summary>
+    /// <summary>
     /// Gets or sets the charged amount.
     /// </summary>
     decimal? Amount { get; set; }
 
-     /// <summary>
+    /// <summary>
     /// Gets or sets the charged percentage.
     /// </summary>
     double? Percent { get; set; }

@@ -35,6 +35,8 @@ public static class IOrderExt2
         }
 
         order.Rounding = order.Rounding();
+        if (order.Rounding == 0) order.Rounding = null;
+
         order.Total = order.Total();
 
         return order;

@@ -8,44 +8,52 @@ CultureInfo? culture = new("sv-SE");
 CultureInfo.DefaultThreadCurrentCulture = culture;
 CultureInfo.DefaultThreadCurrentUICulture = culture;
 
-var order = new Order();
-order.Items.Add(new OrderItem()
-{
-    Description = "Kebabtallrik",
-    Price = 69.00m,
-    VatRate = 0.12,
-    Quantity = 1
-});
-order.Items.Add(new OrderItem()
-{
-    Description = "Coca Cola Zero",
-    Price = 15.00m,
-    VatRate = 0.12,
-    Quantity = 1
-});
-
-order.Charges.Add(
-    new OrderCharge
-    {
-        Description = "Tip",
-        Percent = 0.15
-    }
-);
-
 // var order = new Order();
 // order.Items.Add(new OrderItem()
 // {
-//     Description = "Coca Cola Zero Flaska 0,5 l",
-//     Price = 12.90m,
+//     Description = "Kebabtallrik",
+//     Price = 69.00m,
 //     VatRate = 0.12,
-//     Quantity = 1,
-//     Charges = new List<OrderCharge>() {
-//         new OrderCharge {
-//             Description = "Pant",
-//             Amount = 2
-//         },
-//     }
+//     Quantity = 1
 // });
+// order.Items.Add(new OrderItem()
+// {
+//     Description = "Coca Cola Zero",
+//     Price = 15.00m,
+//     VatRate = 0.12,
+//     Quantity = 1
+// });
+
+// order.Charges.Add(
+//     new OrderCharge
+//     {
+//         Description = "Tip",
+//         Percent = 0.15
+//     }
+// );
+
+var order = new Order();
+order.Items.Add(new OrderItem()
+{
+    Description = "Coca Cola Zero Flaska 0,5 l",
+    Price = 12.90m,
+    VatRate = 0.12,
+    Quantity = 4,
+    Discounts = new List<OrderDiscount>() {
+       new OrderDiscount {
+           Description = "2 for 1",
+           Quantity = 2,
+           //Limit = 1,
+           Amount = -12.90m
+       }
+    },
+    Charges = new List<OrderCharge>() {
+        new OrderCharge {
+            Description = "Pant",
+            Amount = 2
+        },
+    }
+});
 
 // var order = new Order();
 // order.Items.Add(new OrderItem()

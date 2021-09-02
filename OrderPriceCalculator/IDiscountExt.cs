@@ -29,7 +29,7 @@ public static class IDiscountExt
 
             discountQuantity = (int)Math.Floor(orderItemQuantity / (double)discount.Quantity);
         }
-        else 
+        else
         {
             discountQuantity = (int)orderItemQuantity;
         }
