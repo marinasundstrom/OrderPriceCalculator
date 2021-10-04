@@ -4,7 +4,7 @@ public static class IOrderExt
 {
     public static decimal SubTotal(this IOrder order)
     {
-        return order.TotalCore();
+        return order.Items.Sum(i => i.SubTotal());
     }
 
     public static decimal Vat(this IOrder order)
