@@ -9,26 +9,26 @@ public static class IOrderExt2
             item.Update();
         }
 
-        if (order is IOrder2WithTotals owt)
+        if (order is IOrder2WithTotals o2wt)
         {
-            owt.UpdateTotals();
+            o2wt.UpdateTotals();
         }
 
-        if (order is IHasCharges o)
+        if (order is IHasCharges hasCharges)
         {
-            if (order is IHasChargesWithTotal o2)
+            if (order is IHasChargesWithTotal hasChargesWithTotal)
             {
-                o2.Charges.Update(order);
+                hasChargesWithTotal.Charges.Update(order);
             }
 
             order.Charge = order.Charge();
         }
 
-        if (order is IHasDiscounts o3)
+        if (order is IHasDiscounts hasDiscounts)
         {
-            if (order is IHasDiscountsWithTotal o2)
+            if (order is IHasDiscountsWithTotal hasDiscountsWithTotal)
             {
-                o2.Discounts.Update(order);
+                hasDiscountsWithTotal.Discounts.Update(order);
             }
 
             order.Discount = order.Discount();

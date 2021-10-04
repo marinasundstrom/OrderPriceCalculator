@@ -7,29 +7,29 @@ public static class IOrderItemExt2
         orderItem.Vat = orderItem.Vat();
         orderItem.Total = orderItem.Total();
 
-        if (orderItem is IHasCharges oi)
+        if (orderItem is IHasCharges hasCharges)
         {
-            if (orderItem is IHasChargesWithTotal oi2)
+            if (orderItem is IHasChargesWithTotal hasChargesWithTotal)
             {
-                oi2.Charges.Update(orderItem);
+                hasChargesWithTotal.Charges.Update(orderItem);
             }
 
-            if (oi.Charges.Any())
+            if (hasCharges.Charges.Any())
             {
-                orderItem.Charge = oi.Charges.Sum(orderItem);
+                orderItem.Charge = hasCharges.Charges.Sum(orderItem);
             }
         }
 
-        if (orderItem is IHasDiscounts oi3)
+        if (orderItem is IHasDiscounts hasDiscounts)
         {
-            if (orderItem is IHasDiscountsWithTotal oi2)
+            if (orderItem is IHasDiscountsWithTotal hasDiscountsWithTotal)
             {
-                oi2.Discounts.Update(orderItem);
+                hasDiscountsWithTotal.Discounts.Update(orderItem);
             }
 
-            if (oi3.Discounts.Any())
+            if (hasDiscounts.Discounts.Any())
             {
-                orderItem.Discount = oi3.Discounts.Sum(orderItem);
+                orderItem.Discount = hasDiscounts.Discounts.Sum(orderItem);
             }
         }
 

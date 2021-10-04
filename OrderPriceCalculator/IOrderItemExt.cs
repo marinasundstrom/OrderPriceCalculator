@@ -36,14 +36,14 @@ public static class IOrderItemExt
     {
         var sum = orderItem.Price * (decimal)orderItem.Quantity;
 
-        if (orderItem is IHasCharges oi && withCharge)
+        if (orderItem is IHasCharges hasCharges && withCharge)
         {
-            sum += oi.Charges.Sum(orderItem);
+            sum += hasCharges.Charges.Sum(orderItem);
         }
 
-        if (orderItem is IHasDiscounts oi2 && withDiscount)
+        if (orderItem is IHasDiscounts hasDiscounts && withDiscount)
         {
-            sum += oi2.Discounts.Sum(orderItem);
+            sum += hasDiscounts.Discounts.Sum(orderItem);
         }
 
         return sum;

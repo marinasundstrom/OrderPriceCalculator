@@ -22,14 +22,14 @@ public static class IOrderExt
     {
         decimal total = order.TotalCore();
 
-        if (order is IHasCharges o && withCharges)
+        if (order is IHasCharges hasCharges && withCharges)
         {
-            total += o.Charges.Sum(order);
+            total += hasCharges.Charges.Sum(order);
         }
 
-        if (order is IHasDiscounts o2 && withDiscount)
+        if (order is IHasDiscounts hasDiscounts && withDiscount)
         {
-            total += o2.Discounts.Sum(order);
+            total += hasDiscounts.Discounts.Sum(order);
         }
 
         if (withRounding)
