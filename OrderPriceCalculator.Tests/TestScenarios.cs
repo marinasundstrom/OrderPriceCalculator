@@ -1,6 +1,7 @@
 ﻿namespace OrderPriceCalculator.Tests;
 
 using Xunit;
+using Shouldly;
 
 public class TestScenarios
 {
@@ -23,13 +24,6 @@ public class TestScenarios
         });
 
         order.Update();
-
-        /*
-                Assert.Empty(order.Totals);
-
-                Assert.Equal(60m, order.Vat());
-                Assert.Equal(300m, order.Total());
-                */
     }
 
     [Fact]
@@ -60,12 +54,36 @@ public class TestScenarios
         );
 
         order.Update();
+    }
 
-        /*
-                Assert.Empty(order.Totals);
 
-                Assert.Equal(60m, order.Vat());
-                Assert.Equal(300m, order.Total());
-                */
+    [Fact]
+    public void ApplyAmount10DiscountOnSale()
+    {
+        var order = new Order();
+        order.Items.Add(new OrderItem()
+        {
+            Description = "Kebabtallrik",
+            Price = 69.00m,
+            VatRate = 0.12,
+            Quantity = 1
+        });
+        order.Items.Add(new OrderItem()
+        {
+            Description = "Coca Cola Zero",
+            Price = 15.00m,
+            VatRate = 0.12,
+            Quantity = 1
+        });
+
+        order.Discounts.Add(
+            new OrderDiscount
+            {
+                Description = "Discount",
+                Amount = 10m
+            }
+        );
+
+        order.Update();
     }
 }

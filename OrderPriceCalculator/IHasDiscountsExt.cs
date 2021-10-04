@@ -23,6 +23,8 @@ public static class IHasDiscountsExt
 
             if (order.Discounts.Any())
             {
+                if (discount is null) discount = 0;
+
                 discount += order.Discounts.Sum(order);
             }
         }

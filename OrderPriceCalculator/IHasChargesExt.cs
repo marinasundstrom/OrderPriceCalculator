@@ -23,6 +23,8 @@ public static class IHasChargesExt
 
             if (order.Charges.Any())
             {
+                if (charge is null) charge = 0;
+
                 charge += order.Charges.Sum(order);
             }
         }
