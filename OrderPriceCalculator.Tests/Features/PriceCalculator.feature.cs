@@ -87,6 +87,7 @@ namespace OrderPriceCalculator.Tests.Features
         [Xunit.InlineDataAttribute("100", "0.25", "1", "80", "20", "100", new string[0])]
         [Xunit.InlineDataAttribute("100", "0.25", "2", "160", "40", "200", new string[0])]
         [Xunit.InlineDataAttribute("12.90", "0.12", "1", "11.52", "1.38", "12.90", new string[0])]
+        [Xunit.InlineDataAttribute("12.90", "0.12", "2", "23.04", "2.76", "25.80", new string[0])]
         public virtual void CalculateTotalForOrderItem(string price, string vatRate, string quantity, string subTotal, string vat, string total, string[] exampleTags)
         {
             string[] @__tags = new string[] {
