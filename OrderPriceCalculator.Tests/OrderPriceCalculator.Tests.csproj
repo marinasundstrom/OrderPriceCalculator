@@ -31,20 +31,5 @@
   <ItemGroup>
     <Content Include="**\**.feature" />
   </ItemGroup>
-  <ItemGroup>
-    <None Remove="Features\" />
-    <None Remove="StepDefinitions\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Features\" />
-    <Folder Include="StepDefinitions\" />
-  </ItemGroup>
-  <ItemGroup>
-    <SpecFlowFeatureFiles Update="Features\Calculator.feature">
-      <Visible>False</Visible>
-    </SpecFlowFeatureFiles>
-    <SpecFlowFeatureFiles Update="Features\PriceCalculator.feature">
-      <Visible>False</Visible>
-    </SpecFlowFeatureFiles>
-  </ItemGroup>
+
 </Project>

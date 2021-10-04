@@ -83,20 +83,13 @@ namespace OrderPriceCalculator.Tests.Features
         [Xunit.SkippableTheoryAttribute(DisplayName="Calculate Total for OrderItem")]
         [Xunit.TraitAttribute("FeatureTitle", "Price Calculator")]
         [Xunit.TraitAttribute("Description", "Calculate Total for OrderItem")]
-        [Xunit.TraitAttribute("Category", "mytag")]
         [Xunit.InlineDataAttribute("100", "0.25", "1", "80", "20", "100", new string[0])]
         [Xunit.InlineDataAttribute("100", "0.25", "2", "160", "40", "200", new string[0])]
         [Xunit.InlineDataAttribute("12.90", "0.12", "1", "11.52", "1.38", "12.90", new string[0])]
         [Xunit.InlineDataAttribute("12.90", "0.12", "2", "23.04", "2.76", "25.80", new string[0])]
         public virtual void CalculateTotalForOrderItem(string price, string vatRate, string quantity, string subTotal, string vat, string total, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "mytag"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            string[] tagsOfScenario = @__tags;
+            string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("Price", price);
             argumentsOfScenario.Add("VatRate", vatRate);
@@ -105,7 +98,7 @@ namespace OrderPriceCalculator.Tests.Features
             argumentsOfScenario.Add("Vat", vat);
             argumentsOfScenario.Add("Total", total);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Calculate Total for OrderItem", "Calculates the SubTotal, Vat, and Total for an OrderItem.", tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 6
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -125,23 +118,82 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 9
+#line 8
 testRunner.Given(string.Format("that the Unit Price is {0}", price), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 10
+#line 9
 testRunner.And(string.Format("the VAT Rate is {0}", vatRate), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 11
+#line 10
 testRunner.And(string.Format("the Quantity is {0}", quantity), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 12
+#line 11
 testRunner.Then(string.Format("the SubTotal should be {0}", subTotal), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 13
+#line 12
 testRunner.And(string.Format("the VAT should be {0}", vat), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 14
+#line 13
 testRunner.And(string.Format("the Total should be {0}", total), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Calculate Total for Order")]
+        [Xunit.TraitAttribute("FeatureTitle", "Price Calculator")]
+        [Xunit.TraitAttribute("Description", "Calculate Total for Order")]
+        public virtual void CalculateTotalForOrder()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Calculate Total for Order", "Calculates the SubTotal, Vat, and Total for an OrderItem.", tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 23
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Price",
+                            "VatRate",
+                            "Quantity"});
+                table1.AddRow(new string[] {
+                            "12.90",
+                            "0.12",
+                            "2"});
+                table1.AddRow(new string[] {
+                            "100",
+                            "0.25",
+                            "1"});
+#line 26
+testRunner.Given("the following Order Items", ((string)(null)), table1, "Given ");
+#line hidden
+#line 31
+testRunner.Then("the SubTotal should be 103.04", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 32
+testRunner.And("the VAT should be 22.76", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 33
+testRunner.And("the Rounding should be 0.20", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 34
+testRunner.And("the Total should be 126", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

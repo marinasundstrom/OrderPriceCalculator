@@ -3,6 +3,7 @@ using Shouldly;
 
 namespace OrderPriceCalculator.Tests.StepDefinitions.PriceCalculator;
 
+[Scope(Scenario = "Calculate Total for OrderItem")]
 [Binding]
 public class CalculateTotalForOrderItemSteps
 {
