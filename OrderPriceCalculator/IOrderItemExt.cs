@@ -12,8 +12,9 @@ public static class IOrderItemExt
              .Discount().GetValueOrDefault()
              .SubtractVat(orderItem.VatRate);
 
-        return (decimal)orderItem.Quantity * orderItem.Price.SubtractVat(orderItem.VatRate) + chargeWithoutVat + discountWithoutVat;
+        var v = (decimal)orderItem.Quantity * orderItem.Price.SubtractVat(orderItem.VatRate) + chargeWithoutVat + discountWithoutVat;
 
+        return Math.Round(v, 2);
     }
 
     public static decimal Vat(this IOrderItem orderItem)
@@ -28,7 +29,7 @@ public static class IOrderItemExt
 
         var v = (orderItem.Price * (decimal)orderItem.Quantity).GetVatIncl(orderItem.VatRate) + chargeVat + discountVat;
 
-        return v; ;
+        return Math.Round(v, 2);
     }
 
     public static decimal Total(this IOrderItem orderItem, bool withCharge = true, bool withDiscount = true)
