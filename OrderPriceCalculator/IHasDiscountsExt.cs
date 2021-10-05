@@ -40,4 +40,23 @@ public static class IHasDiscountsExt
 
         return discount;
     }
+
+    /// <summary>
+    /// Get discounts at an Order-level.
+    /// </summary>
+    /// <param name="order"></param>
+    /// <returns></returns>
+    public static decimal? OrderDiscounts(this IOrder order)
+    {
+        decimal? discount = null;
+
+        if (order.Discounts.Any())
+        {
+            if (discount is null) discount = 0;
+
+            discount += order.Discounts.Sum(order);
+        }
+
+        return discount;
+    }
 }
