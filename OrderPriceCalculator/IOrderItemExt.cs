@@ -2,19 +2,24 @@
 
 public static class IOrderItemExt
 {
+    /// <summary>
+    /// Get total price excl. VAT, charges and discounts
+    /// </summary>
+    /// <param name="orderItem"></param>
+    /// <returns></returns>
     public static decimal SubTotal(this IOrderItem orderItem)
     {
         var chargeWithoutVat = orderItem
-               .Charge().GetValueOrDefault()
-               .SubtractVat(orderItem.VatRate);
+                       .Charge().GetValueOrDefault()
+                       .SubtractVat(orderItem.VatRate);
 
         var discountWithoutVat = orderItem
              .Discount().GetValueOrDefault()
              .SubtractVat(orderItem.VatRate);
 
-        var v = (decimal)orderItem.Quantity * orderItem.Price.SubtractVat(orderItem.VatRate) + chargeWithoutVat + discountWithoutVat;
+        var value = (orderItem.Price * (decimal)orderItem.Quantity).SubtractVat(orderItem.VatRate) + chargeWithoutVat + discountWithoutVat;
 
-        return Math.Round(v, 2);
+        return Math.Round(value, 2);
     }
 
     public static decimal Vat(this IOrderItem orderItem)
@@ -27,9 +32,9 @@ public static class IOrderItemExt
                .Discount().GetValueOrDefault()
                .GetVatIncl(orderItem.VatRate);
 
-        var v = (orderItem.Price * (decimal)orderItem.Quantity).GetVatIncl(orderItem.VatRate) + chargeVat + discountVat;
+        var value = (orderItem.Price * (decimal)orderItem.Quantity).GetVatIncl(orderItem.VatRate) + chargeVat + discountVat;
 
-        return Math.Round(v, 2);
+        return Math.Round(value, 2);
     }
 
     public static decimal Total(this IOrderItem orderItem, bool withCharge = true, bool withDiscount = true)
@@ -46,6 +51,6 @@ public static class IOrderItemExt
             sum += hasDiscounts.Discounts.Sum(orderItem);
         }
 
-        return sum;
+        return Math.Round(sum, 2);
     }
 }

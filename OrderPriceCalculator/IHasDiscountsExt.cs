@@ -3,7 +3,7 @@
 public static class IHasDiscountsExt
 {
     /// <summary>
-    /// Gets the total amount of Discounts.
+    /// Gets the amount of Discounts.
     /// </summary>
     public static decimal? Discount(this IHasDiscounts hasDiscounts)
     {
@@ -11,16 +11,6 @@ public static class IHasDiscountsExt
 
         if (hasDiscounts is IOrder order)
         {
-            foreach (var item in order.Items)
-            {
-                if (!item.Discounts.Any())
-                    continue;
-
-                if (discount is null) discount = 0;
-
-                discount += item.Discount();
-            }
-
             if (order.Discounts.Any())
             {
                 if (discount is null) discount = 0;
@@ -42,19 +32,30 @@ public static class IHasDiscountsExt
     }
 
     /// <summary>
-    /// Get discounts at an Order-level.
+    /// Gets the total amount of Discounts.
     /// </summary>
-    /// <param name="order"></param>
-    /// <returns></returns>
-    public static decimal? OrderDiscounts(this IOrder order)
+    public static decimal? TotalDiscount(this IHasTotalDiscounts hasTotalDiscounts)
     {
         decimal? discount = null;
 
-        if (order.Discounts.Any())
+        if (hasTotalDiscounts is IOrder order)
         {
-            if (discount is null) discount = 0;
+            foreach (var item in order.Items)
+            {
+                if (!item.Discounts.Any())
+                    continue;
 
-            discount += order.Discounts.Sum(order);
+                if (discount is null) discount = 0;
+
+                discount += item.Discount();
+            }
+
+            if (order.Discounts.Any())
+            {
+                if (discount is null) discount = 0;
+
+                discount += order.Discounts.Sum(order);
+            }
         }
 
         return discount;

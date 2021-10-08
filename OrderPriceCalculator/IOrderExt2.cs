@@ -22,6 +22,7 @@ public static class IOrderExt2
             }
 
             order.Charge = order.Charge();
+            order.TotalCharge = order.ChargeTotal();
         }
 
         if (order is IHasDiscounts hasDiscounts)
@@ -32,7 +33,10 @@ public static class IOrderExt2
             }
 
             order.Discount = order.Discount();
+            order.TotalDiscount = order.TotalDiscount();
         }
+
+        order.SubTotal = order.SubTotal();
 
         order.Rounding = order.Rounding();
         if (order.Rounding == 0) order.Rounding = null;

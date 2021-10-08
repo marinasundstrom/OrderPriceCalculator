@@ -4,6 +4,8 @@ public static class IOrderItemExt2
 {
     public static IOrderItem2 Update(this IOrderItem2 orderItem)
     {
+        var subTotal = orderItem.SubTotal();
+
         orderItem.Vat = orderItem.Vat();
         orderItem.Total = orderItem.Total();
 

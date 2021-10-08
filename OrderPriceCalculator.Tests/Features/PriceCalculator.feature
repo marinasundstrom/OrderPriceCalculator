@@ -32,3 +32,12 @@ Then the SubTotal should be 103.04
 And the VAT should be 22.76
 And the Rounding should be 0.20
 And the Total should be 126
+
+Scenario: Apply Swedish Pant charge to beverage container
+Beverage containers made out of plastic or aluminum have a charge mean
+to incentivize it to be handed in to be recycled.
+
+Given that the Consumer has bought a beverage in a container
+And the Price is 12.90 and the VAT Rate is 12%
+And the Pant Charge is 2
+Then the Total should be 14.90

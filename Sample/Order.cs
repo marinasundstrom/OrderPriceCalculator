@@ -16,6 +16,7 @@ public class Order : IOrder2WithTotals, IOrder2WithTotalsInternals
 
     public List<OrderDiscount> Discounts { get; set; } = new List<OrderDiscount>();
     public decimal? Discount { get; set; }
+    public decimal? TotalDiscount { get; set; }
 
     IEnumerable<IOrderItem> IOrder.Items => Items;
     IEnumerable<IOrderItem2> IOrder2.Items => Items;
@@ -27,6 +28,7 @@ public class Order : IOrder2WithTotals, IOrder2WithTotalsInternals
 
     public List<OrderCharge> Charges { get; set; } = new List<OrderCharge>();
     public decimal? Charge { get; set; }
+    public decimal? TotalCharge { get; set; }
 
     IEnumerable<ICharge> IHasCharges.Charges => Charges;
     IEnumerable<IChargeWithTotal> IHasChargesWithTotal.Charges => Charges;
