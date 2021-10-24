@@ -34,7 +34,7 @@ public static class IHasDiscountsExt
     /// <summary>
     /// Gets the total amount of Discounts.
     /// </summary>
-    public static decimal? TotalDiscount(this IHasTotalDiscounts hasTotalDiscounts)
+    public static decimal? TotalDiscount(this IHasDiscountTotal hasTotalDiscounts)
     {
         decimal? discount = null;
 

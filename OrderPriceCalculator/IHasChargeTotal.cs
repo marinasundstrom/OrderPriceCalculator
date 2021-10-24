@@ -1,9 +1,9 @@
 ﻿namespace OrderPriceCalculator;
 
-public interface IHasTotalCharges : IHasCharges
+public interface IHasChargeTotal : IHasCharges
 {
     /// <summary>
     /// Gets or sets the total charged amount.
     /// </summary>
-    decimal? TotalCharge { get; set; }
+    decimal? ChargeTotal { get; set; }
 }

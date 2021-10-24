@@ -31,10 +31,10 @@ public class TestScenarios
         order.Totals.ShouldBeEmpty();
 
         order.Charge.ShouldBeNull();
-        order.TotalCharge.ShouldBe(2);
+        order.ChargeTotal.ShouldBe(2);
 
         order.Discount.ShouldBeNull();
-        order.TotalDiscount.ShouldBeNull();
+        order.DiscountTotal.ShouldBeNull();
     }
 
     [Fact]
@@ -72,10 +72,10 @@ public class TestScenarios
         order.Totals.ShouldBeEmpty();
 
         order.Charge.ShouldNotBeNull();
-        order.TotalCharge.ShouldNotBeNull();
+        order.ChargeTotal.ShouldNotBeNull();
 
         order.Discount.ShouldBeNull();
-        order.TotalDiscount.ShouldBeNull();
+        order.DiscountTotal.ShouldBeNull();
     }
 
 
@@ -114,10 +114,10 @@ public class TestScenarios
         order.Totals.ShouldBeEmpty();
 
         order.Charge.ShouldBeNull();
-        order.TotalCharge.ShouldBeNull();
+        order.ChargeTotal.ShouldBeNull();
 
         order.Discount.ShouldNotBeNull();
-        order.TotalDiscount.ShouldNotBeNull();
+        order.DiscountTotal.ShouldNotBeNull();
     }
 
     [Fact]
@@ -151,6 +151,6 @@ public class TestScenarios
         order.Charge.ShouldBeNull();
 
         order.Discount.ShouldBeNull();
-        order.TotalDiscount.ShouldBeNull();
+        order.DiscountTotal.ShouldBeNull();
     }
 }

@@ -1,9 +1,9 @@
 ﻿namespace OrderPriceCalculator;
 
-public interface IHasTotalDiscounts : IHasDiscounts
+public interface IHasDiscountTotal : IHasDiscounts
 {
     /// <summary>
     /// Gets or sets the total discounted amount.
     /// </summary>
-    decimal? TotalDiscount { get; set; }
+    decimal? DiscountTotal { get; set; }
 }

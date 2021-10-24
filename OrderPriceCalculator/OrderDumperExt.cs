@@ -62,8 +62,8 @@ public static class OrderDumperExt
             WriteLine();
         }
 
-        WriteLine($"Charges: {order.Charge?.ToString("c")}");
-        WriteLine($"Discount: {order.Discount?.ToString("c")}");
+        WriteLine($"Charges: {order.ChargeTotal?.ToString("c")}");
+        WriteLine($"Discount: {order.DiscountTotal?.ToString("c")}");
         WriteLine($"Vat: {order.Vat().ToString("c")}");
         WriteLine($"Rounding: {order.Rounding?.ToString("c")} ");
         WriteLine($"Total: {order.Total().ToString("c")}");

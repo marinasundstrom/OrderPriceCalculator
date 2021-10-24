@@ -1,6 +1,6 @@
 ﻿namespace OrderPriceCalculator;
 
-public interface IOrder : IHasCharges, IHasDiscounts, IHasTotalCharges, IHasTotalDiscounts
+public interface IOrder : IHasCharges, IHasDiscounts, IHasChargeTotal, IHasDiscountTotal
 {
     IEnumerable<IOrderItem> Items { get; }
 }

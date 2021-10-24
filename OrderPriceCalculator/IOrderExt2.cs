@@ -22,7 +22,7 @@ public static class IOrderExt2
             }
 
             order.Charge = order.Charge();
-            order.TotalCharge = order.ChargeTotal();
+            order.ChargeTotal = order.ChargeTotal();
         }
 
         if (order is IHasDiscounts hasDiscounts)
@@ -33,7 +33,7 @@ public static class IOrderExt2
             }
 
             order.Discount = order.Discount();
-            order.TotalDiscount = order.TotalDiscount();
+            order.DiscountTotal = order.TotalDiscount();
         }
 
         order.SubTotal = order.SubTotal();

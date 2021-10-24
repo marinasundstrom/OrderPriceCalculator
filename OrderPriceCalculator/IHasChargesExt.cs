@@ -34,7 +34,7 @@ public static class IHasChargesExt
     /// <summary>
     /// Gets the total amount of Charges.
     /// </summary>
-    public static decimal? ChargeTotal(this IHasTotalCharges hasTotalCharges)
+    public static decimal? ChargeTotal(this IHasChargeTotal hasTotalCharges)
     {
         decimal? charge = null;
 
