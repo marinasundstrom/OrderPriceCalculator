@@ -2,7 +2,7 @@
 
 public static class IOrderExt2
 {
-    public static IOrder2 Update(this IOrder2 order)
+    public static IOrder2 Update(this IOrder2 order, bool withRounding = true)
     {
         foreach (var item in order.Items)
         {
@@ -38,10 +38,13 @@ public static class IOrderExt2
 
         order.SubTotal = order.SubTotal();
 
-        order.Rounding = order.Rounding();
-        if (order.Rounding == 0) order.Rounding = null;
+        if (withRounding)
+        {
+            order.Rounding = order.Rounding();
+            if (order.Rounding == 0) order.Rounding = null;
+        }
 
-        order.Total = order.Total();
+        order.Total = order.Total(withRounding);
 
         return order;
     }
