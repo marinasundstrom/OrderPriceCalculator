@@ -25,18 +25,21 @@ public static class OrderDumperExt
             WriteLine();
         }
 
-        WriteLine();
+        //WriteLine();
 
         var totals = order.Totals();
 
-        WriteLine($"{"VAT%",-5} {"Sub Total",-12} {"VAT",-12} {"Total",-12}");
-
-        foreach (var f in totals)
+        if (totals.Any()) //.Count() > 1)
         {
-            WriteLine($"{f.VatRate * 100 + "%",-5} {f.SubTotal.ToString("c"),-12} {f.Vat.ToString("c"),-12} {f.Total.ToString("c"),-12}");
-        }
+            WriteLine($"{"VAT%",-5} {"Sub Total",-12} {"VAT",-12} {"Total",-12}");
 
-        WriteLine();
+            foreach (var f in totals)
+            {
+                WriteLine($"{f.VatRate * 100 + "%",-5} {f.SubTotal.ToString("c"),-12} {f.Vat.ToString("c"),-12} {f.Total.ToString("c"),-12}");
+            }
+
+            WriteLine();
+        }
 
         if (order.Charges.Any())
         {
@@ -62,10 +65,19 @@ public static class OrderDumperExt
             WriteLine();
         }
 
+        WriteLine($"Sub Total: {order.SubTotal?.ToString("c")}");
+        WriteLine($"VAT Rate: {(order.VatRate is not null ? $"{order.VatRate * 100 + "%"}" : null)}");
+        WriteLine($"VAT: {order.Vat().ToString("c")}");
+
+        WriteLine();
+
+        WriteLine($"Rounding: {order.Rounding?.ToString("c")}");
+        WriteLine($"Total: {order.Total.ToString("c")}");
+
+        WriteLine();
+
+        WriteLine("Included:");
         WriteLine($"Charges: {order.ChargeTotal?.ToString("c")}");
         WriteLine($"Discount: {order.DiscountTotal?.ToString("c")}");
-        WriteLine($"Vat: {order.Vat().ToString("c")}");
-        WriteLine($"Rounding: {order.Rounding?.ToString("c")} ");
-        WriteLine($"Total: {order.Total.ToString("c")}");
     }
 }
